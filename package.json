@@ -1,0 +1,16 @@
+{
+  "name": "human-readable-opml",
+  "version": "1.0.0",
+  "description": "Takes an OPML file from a podcast app and renders it into a human readable list, getting information about the podcast from the feed.",
+  "main": "ploppops.js",
+  "dependencies": {
+    "ajax-request": "^1.2.3",
+    "xml2json": "^0.11.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Tests are wicked malarkey.\" && exit 1"
+  },
+  "author": "Mark Kenny",
+  "license": "MIT"
+}
