@@ -5,6 +5,7 @@
   "main": "ploppops.js",
   "dependencies": {
     "ajax-request": "",
+    "request": "^2.88.0",
     "xml2json": ""
   },
   "devDependencies": {},
