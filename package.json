@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Tests are wicked malarkey.\" && exit 1"
+    "test": "echo \"We shall have none of that  malarkey here.\" && exit 1"
   },
   "author": "Mark Kenny",
   "license": "MIT"
