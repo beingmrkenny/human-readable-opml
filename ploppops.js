@@ -32,7 +32,7 @@ fs.readFile(input, function(err, data) {
 					let output = ++count + '. ' + json.rss.channel.title + "\n";
 					output += description + "\n";
 					output += "Website: " + json.rss.channel.link + "\n";
-					output += "Subscribe: " scheme + ":" + rssURL + "\n";
+					output += "Subscribe: " + scheme + ":" + rssURL + "\n";
 					output += "========================================================\n\n";
 					stream.write(output);
 				}

@@ -4,12 +4,12 @@
   "description": "Takes an OPML file from a podcast app and renders it into a human readable list, getting information about the podcast from the feed.",
   "main": "ploppops.js",
   "dependencies": {
-    "ajax-request": "^1.2.3",
-    "xml2json": "^0.11.2"
+    "ajax-request": "",
+    "xml2json": ""
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"We shall have none of that  malarkey here.\" && exit 1"
+    "test": "echo \"We shall have none of that malarkey here.\" && exit 1"
   },
   "author": "Mark Kenny",
   "license": "MIT"

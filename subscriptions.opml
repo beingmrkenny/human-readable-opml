@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<opml version="1.1">
+  <head>
+    <title>Castro 2 Podcast Feeds</title>
+  </head>
+  <body>
+    <outline xmlUrl="https://www.relay.fm/radar/feed" text="Under the Radar" title="Under the Radar" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.wnyc.org/sooomanywhiteguys" text="Sooo Many White Guys" title="Sooo Many White Guys" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.99percentinvisible.org/99percentinvisible" text="99% Invisible" title="99% Invisible" type="rss" version="RSS"/>
+    <outline xmlUrl="http://musicforprogramming.net/rss.php" text="Music For Programming" title="Music For Programming" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.feedburner.com/GettingOnWithJamesUrbaniak" text="Getting On with James Urbaniak" title="Getting On with James Urbaniak" type="rss" version="RSS"/>
+    <outline xmlUrl="http://rss.acast.com/adambuxton" text="THE ADAM BUXTON PODCAST" title="THE ADAM BUXTON PODCAST" type="rss" version="RSS"/>
+    <outline xmlUrl="https://rss.art19.com/rupaul-whats-the-tee-with-michelle-visage" text="RuPaul: What's The Tee with Michelle Visage" title="RuPaul: What's The Tee with Michelle Visage" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.feedburner.com/peptalkspodcast" text="Pep Talks with the Bitter Buddha" title="Pep Talks with the Bitter Buddha" type="rss" version="RSS"/>
+    <outline xmlUrl="https://www.theguardian.com/politics/series/brexit-means/podcast.xml" text="The Guardian&#x2019;s Brexit means ..." title="The Guardian&#x2019;s Brexit means ..." type="rss" version="RSS"/>
+    <outline xmlUrl="http://wakingup.libsyn.com/rss" text="Making Sense with Sam Harris" title="Making Sense with Sam Harris" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.wnyc.org/radiolab" text="Radiolab" title="Radiolab" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.wnyc.org/onthemedia" text="On the Media" title="On the Media" type="rss" version="RSS"/>
+    <outline xmlUrl="https://feeds.megaphone.fm/call-chelsea" text="Call Chelsea Peretti" title="Call Chelsea Peretti" type="rss" version="RSS"/>
+    <outline xmlUrl="https://feeds.megaphone.fm/revisionisthistory" text="Revisionist History" title="Revisionist History" type="rss" version="RSS"/>
+    <outline xmlUrl="https://danagould.libsyn.com/rss" text="The Dana Gould Hour" title="The Dana Gould Hour" type="rss" version="RSS"/>
+    <outline xmlUrl="https://www.theguardian.com/books/series/books/podcast.xml" text="The Guardian Books podcast" title="The Guardian Books podcast" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.wnyc.org/moreperfect" text="Radiolab Presents: More Perfect" title="Radiolab Presents: More Perfect" type="rss" version="RSS"/>
+    <outline xmlUrl="https://rss.art19.com/freakonomics-radio" text="Freakonomics Radio" title="Freakonomics Radio" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.wnyc.org/10-things-scare-me" text="10 Things That Scare Me" title="10 Things That Scare Me" type="rss" version="RSS"/>
+    <outline xmlUrl="http://hiddenmickeys.libsyn.com/rss" text="Hidden Mickeys" title="Hidden Mickeys" type="rss" version="RSS"/>
+    <outline xmlUrl="https://rss.art19.com/my-favorite-murder-with-karen-kilgariff-and-georgia-hardstark-fb" text="My Favorite Murder with Karen Kilgariff and Georgia Hardstark" title="My Favorite Murder with Karen Kilgariff and Georgia Hardstark" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.feedburner.com/todayinthepast" text="Judge John Hodgman" title="Judge John Hodgman" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.thetruthpodcast.com/thetruthapm" text="The Truth" title="The Truth" type="rss" version="RSS"/>
+    <outline xmlUrl="https://podcasts.files.bbci.co.uk/p06lnk20.rss" text="This is Capitalism" title="This is Capitalism" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.soundcloud.com/users/soundcloud:users:29668643/sounds.rss" text="The Guardian Long Read" title="The Guardian Long Read" type="rss" version="RSS"/>
+    <outline xmlUrl="https://anchor.fm/s/97db258/podcast/rss" text="BuzzFeed's Internet Explorer" title="BuzzFeed's Internet Explorer" type="rss" version="RSS"/>
+    <outline xmlUrl="https://beefanddairynetwork.libsyn.com/rss" text="Beef And Dairy Network" title="Beef And Dairy Network" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feed.thisamericanlife.org/talpodcast" text="This American Life" title="This American Life" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.megaphone.fm/20k" text="Twenty Thousand Hertz" title="Twenty Thousand Hertz" type="rss" version="RSS"/>
+    <outline xmlUrl="https://podcasts.files.bbci.co.uk/p05t3gr2.rss" text="The Boring Talks" title="The Boring Talks" type="rss" version="RSS"/>
+    <outline xmlUrl="https://podcasts.files.bbci.co.uk/p04b1g3c.rss" text="50 Things That Made the Modern Economy" title="50 Things That Made the Modern Economy" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.soundcloud.com/users/soundcloud:users:318147839/sounds.rss" text="Comprendre le monde" title="Comprendre le monde" type="rss" version="RSS"/>
+    <outline xmlUrl="https://podcasts.files.bbci.co.uk/b010m2mj.rss" text="The News Quiz Extra" title="The News Quiz Extra" type="rss" version="RSS"/>
+    <outline xmlUrl="https://feeds.megaphone.fm/KM8208861308" text="This Sounds Serious" title="This Sounds Serious" type="rss" version="RSS"/>
+    <outline xmlUrl="https://omny.fm/shows/the-paris-review/playlists/podcast.rss" text="The Paris Review" title="The Paris Review" type="rss" version="RSS"/>
+    <outline xmlUrl="https://www.omnycontent.com/d/playlist/aaea4e69-af51-495e-afc9-a9760146922b/8f57a588-9582-4b05-89c9-aaa001627e6f/5e92c398-71a9-4767-8181-aaa001627e86/podcast.rss" text="You Must Remember This" title="You Must Remember This" type="rss" version="RSS"/>
+    <outline xmlUrl="https://feeds.megaphone.fm/ep-wswb" text="Where Should We Begin? with Esther Perel" title="Where Should We Begin? with Esther Perel" type="rss" version="RSS"/>
+    <outline xmlUrl="https://www.theguardian.com/news/series/the-audio-long-read/podcast.xml" text="The Guardian's Audio Long Reads" title="The Guardian's Audio Long Reads" type="rss" version="RSS"/>
+    <outline xmlUrl="https://rss.art19.com/the-dollop" text="The Dollop with Dave Anthony and Gareth Reynolds" title="The Dollop with Dave Anthony and Gareth Reynolds" type="rss" version="RSS"/>
+    <outline xmlUrl="https://www.omnycontent.com/d/playlist/aaea4e69-af51-495e-afc9-a9760146922b/796f42bb-282c-4ba4-a0c6-a9ea0129cafa/fa8e724d-0571-49bb-841b-a9ea0129cb03/podcast.rss" text="Comedy Bang Bang: The Podcast" title="Comedy Bang Bang: The Podcast" type="rss" version="RSS"/>
+    <outline xmlUrl="https://www.omnycontent.com/d/playlist/aaea4e69-af51-495e-afc9-a9760146922b/e502e4a4-d813-4169-87ee-aac7012f2678/b536c1bc-be9e-43e3-9e45-aac7012f269d/podcast.rss" text="Do You Need A Ride?" title="Do You Need A Ride?" type="rss" version="RSS"/>
+    <outline xmlUrl="https://letsfindoutasmr.libsyn.com/rss" text="The Let's Find Out ASMR podcast" title="The Let's Find Out ASMR podcast" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.feedburner.com/tappedpodcast" text="TAPPED" title="TAPPED" type="rss" version="RSS"/>
+    <outline xmlUrl="http://feeds.nightvalepresents.com/sleepwithme" text="Sleep With Me" title="Sleep With Me" type="rss" version="RSS"/>
+  </body>
+</opml>
