@@ -1,6 +1,6 @@
 const input = 'subscriptions.opml';
 const output = 'podcasts.html';
-const title = "Mark’s podcasts";
+const title = 'Mark’s podcasts';
 const scheme = 'podcasts';
 const style = `
 	body {
@@ -28,11 +28,12 @@ const request = require('request');
 try { fs.unlinkSync(output); } catch (e) {}
 
 var podcasts = [];
-var end;
+var totalPodcasts;
 
 function writePodcastsFile (podcasts) {
-	var stream = fs.createWriteStream(output, {flags:'a'});
-	stream.write(`<!DOCTYPE html><html><head><meta charset="utf-8">\n<title>${title}</title>\n<style>${style}</style>\n</head>\n\n<body>\n\n<h1>${title} (${end})</h1>\n\n`);
+
+	let stream = fs.createWriteStream(output, {flags:'a'});
+	stream.write(`<!DOCTYPE html><html><head><meta charset="utf-8">\n<title>${title}</title>\n<style>${style}</style>\n</head>\n\n<body>\n\n<h1>${title} (${totalPodcasts})</h1>\n\n`);
 	stream.on('finish', function () {
 		fs.appendFileSync(output, '</body></html>');
 	});
@@ -71,13 +72,13 @@ fs.readFile(input, function(err, data) {
 
 	let json = xml2json.toJson(data, { object: true });
 	let count = 0;
-	end = json.opml.body.outline.length;
+	totalPodcasts = json.opml.body.outline.length;
 
 	for (outline of json.opml.body.outline) {
 		let rssURL = outline.xmlUrl;
 		request(rssURL, function(err, res, data) {
 			try {
-				var json = xml2json.toJson(data, { object: true });
+				let json = xml2json.toJson(data, { object: true });
 				if (json.rss) {
 					podcasts.push({
 						title : json.rss.channel.title,
@@ -85,8 +86,7 @@ fs.readFile(input, function(err, data) {
 						rssURL : rssURL,
 						link : json.rss.channel.link
 					});
-					count++;
-					if (count == end) {
+					if (++count == totalPodcasts) {
 						writePodcastsFile(podcasts);
 					}
 				}

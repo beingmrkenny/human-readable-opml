@@ -1,13 +1,13 @@
 # Human Readable OPML
 
-A littel node script what taketh thine OPML file and rendereth it unto a human readable HTML file. It goeth through each subscription and pulleth the title, description and website from the feed URL, and createth a nice littel HTML file what thou canst share with thy friends and enemies, thy loved ones and with the authorities as thou pleasest, or be required by law, so help us all.
+A littel node script what taketh thine OPML file and rendereth it unto an human readable HTML file. It goeth through each subscription and it pulleth the title, description and website from the feed URL, and createth a nice littel HTML file what thou canst share with thy friends and enemies, thy loved ones, and with the authorities as thou pleasest or howsoever thou be required by law, so help us all.
 
 Installation followeth the normal malarkey: `npm install`. Then munst thou run the file like so: `node ploppops.js`.
 
-If thou wishest to make edits to some parameters, **thou munst be a good goat** and edit the file for thine own needs. Things what thou mayest want to change are below. They do appear at the top of the JS file as constants.
+If thou wishest to make edits to these parameters herein, **thou munst be a good goat** and edit the file for thine own needs. Things what thou mayest want to change are below. These do appear at the top of the JS file as constants.
 
-- `input` — the subscriptions file name, in OPML format; the default be `subscriptions.opml`
-- `output` — the HTML file where the human readable list shall be made to exist; the default be `podcasts.html`
+- `input` — the subscriptions file name, a relative filepath, in OPML format; the default be `subscriptions.opml`
+- `output` — the HTML file, a relative filepath, where the human readable list shall be made to exist; the default be `podcasts.html`
 - `title` — the title which appeareth at the top of the file; the default be `Mark's podcasts`, which thou mayest wish to change to thine own name, or a titelle of thine own choosing
 - `scheme` — the littel piece of text, a "tag" if thou wilst, what specifieth in which app to open the podcast, e.g. `itms`, `podcasts`; the default be `itms` or something, I am yet to decide; and lo, mark thou this point welle: this mayeth go away since this whole business seemeth to be the darkest shenanigans (yea, even unto the end of time) and it mayeth prove more expedient to be rid of the entire filthy enterprise.
-- `style` — here be CSS to make thine HTML full betterer for the gentler eye
+- `style` — here be CSS to make thine HTML full betterer for thy gentle eye
