@@ -1,0 +1,132 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    width: 700px;
+    margin: 50px auto;
+}
+body.pour-la-categoire {
+    width: auto;
+    margin: 50px;
+}
+h2 {
+    margin-top: 90px;
+}
+textarea {
+    padding: 10px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+button {
+    border: 0;
+    padding: 0 10px;
+
+    font-size: 40px;
+    cursor: pointer;
+    background: transparent;
+}
+thead th {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: Gradient 15s ease infinite;
+    color: white;
+}
+th, td {
+    text-align: left;
+    padding: 10px;
+}
+tbody td, tbody th {
+    color: #444;
+}
+tbody tr:nth-child(odd) td,
+tbody tr:nth-child(odd) th {
+    background: #ececec;
+}
+tbody tr:nth-child(even) td,
+tbody tr:nth-child(even) th {
+    background: #f9f9f9;
+}
+.categoire-cell {
+    text-align: center;
+}
+.checkbox-cell input {
+    display: none;
+}
+label {
+    display: flex;
+    height: 100px;
+    min-width: 100px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid gray;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+label::before {
+    content: '⬜️';
+}
+label:hover {
+    background: #ffffb8;
+}
+.checkbox-cell input:checked + label {
+    background: yellow;
+}
+.checkbox-cell input:checked + label::before {
+    content: '🤗';
+}
+img {
+    width: 100px;
+    float: left;
+    margin: 0 10px 10px 0;
+    border-radius: 3px;
+}
+
+td img {
+    margin: 0;
+}
+footer {
+    clear: both;
+    padding-top: 10px;
+}
+
+.from {
+    display: flex;
+    width: 400px;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: Gradient 15s ease infinite;
+    border-radius: 20px;
+}
+
+.from textarea {
+    margin: 2px;
+    border-radius: 20px 0 0 20px;
+    border: 0;
+    flex: 1;
+    resize: none;
+    font-family: 'Marker Felt', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.from button {
+    border-radius: 0 20px 20px 0;
+}
+
+#VoiçoireLeCategoire {
+
+}
+
+#LeCategoireTabloire {
+    display: none;
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
