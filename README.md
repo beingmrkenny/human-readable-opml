@@ -10,4 +10,8 @@ If thou wishest to make edits to these parameters herein, **thou munst be a good
 - `output` — the HTML file, a relative filepath, where the human readable list shall be made to exist; the default be `podcasts.html`
 - `title` — the title which appeareth at the top of the file; the default be `Mark's podcasts`, which thou mayest wish to change to thine own name, or a titelle of thine own choosing
 - `scheme` — the littel piece of text, a "tag" if thou wilst, what specifieth in which app to open the podcast, e.g. `itms`, `podcasts`; the default be `itms` or something, I am yet to decide; and lo, mark thou this point welle: this mayeth go away since this whole business seemeth to be the darkest shenanigans (yea, even unto the end of time) and it mayeth prove more expedient to be rid of the entire filthy enterprise.
-- `style` — here be CSS to make thine HTML full betterer for thy gentle eye
+- `style` — here be CSS to make thine HTML full betterer for the gentler eye
+
+## Categoire
+
+Included in this littel repositoire is the abilitoire to put your podcasts into what categoire what seem appropriate to you. This is a nice littel HTML page which does the business quite good. You should be awoire that I have created it with whimsy and silliness and written it in a language called Frunch, so any copy on it is basically complete nonsense. If you don't like this, I quite invite you to change your mind.

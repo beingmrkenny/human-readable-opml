@@ -4,8 +4,7 @@
   "description": "Takes an OPML file from a podcast app and renders it into a human readable list, getting information about the podcast from the feed.",
   "main": "ploppops.js",
   "dependencies": {
-    "ajax-request": "",
-    "request": "^2.88.0",
+    "request": "",
     "xml2json": ""
   },
   "devDependencies": {},
