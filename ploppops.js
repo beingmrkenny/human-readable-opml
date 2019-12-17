@@ -27,39 +27,67 @@ const request = require('request');
 
 try { fs.unlinkSync(output); } catch (e) {}
 
-var stream = fs.createWriteStream(output, {flags:'a'});
-stream.on('finish', function () {
-	fs.appendFileSync(output, '</body></html>');
-});
+var podcasts = [];
+var end;
+
+function writePodcastsFile (podcasts) {
+	var stream = fs.createWriteStream(output, {flags:'a'});
+	stream.write(`<!DOCTYPE html><html><head><meta charset="utf-8">\n<title>${title}</title>\n<style>${style}</style>\n</head>\n\n<body>\n\n<h1>${title} (${end})</h1>\n\n`);
+	stream.on('finish', function () {
+		fs.appendFileSync(output, '</body></html>');
+	});
+
+	podcasts.sort(function(pa, pb) {
+		let a = pa.title.toLowerCase();
+		let b = pb.title.toLowerCase();
+		if (a < b) { return -1; }
+		if (a > b) { return 1; }
+		return 0;
+	});
+
+	for (let i = 0, x = podcasts.length; i<x; i++) {
+		let podcast = podcasts[i];
+		let linkHTML = (podcast.link)
+			? `<p>Website: <a href="${podcast.link}" target="_blank">${podcast.link}</a></p>`
+			: '';
+		let count = i + 1;
+		let description = podcast.description;
+			description = description.replace(/<\/?(?:p|br)>/g, ' ');
+			description = description.replace(/\s+/g, ' ');
+		let subscribeURL = podcast.rssURL.replace(/https?:\/\//, scheme+'://');
+		stream.write(`
+			<h2>${count}. ${podcast.title}</h2>
+			<p>${description}</p>
+			${linkHTML}
+			<p>Subscribe: <a href="${subscribeURL}" target="_blank">${subscribeURL}</a></p>
+		`);
+	}
+
+	stream.end();
+
+}
 
 fs.readFile(input, function(err, data) {
-	var json = xml2json.toJson(data, { object: true });
-	let count = 0;
-	let end = json.opml.body.outline.length;
 
-	stream.write(`<!DOCTYPE html><html><head><meta charset="utf-8">\n<title>${title}</title>\n<style>${style}</style>\n</head>\n\n<body>\n\n<h1>${title} (${end})</h1>\n\n`);
+	let json = xml2json.toJson(data, { object: true });
+	let count = 0;
+	end = json.opml.body.outline.length;
 
 	for (outline of json.opml.body.outline) {
 		let rssURL = outline.xmlUrl;
-		let podcast = { rssURL: rssURL };
 		request(rssURL, function(err, res, data) {
 			try {
 				var json = xml2json.toJson(data, { object: true });
 				if (json.rss) {
-					let subscribeURL = rssURL.replace(/https?:\/\//, scheme+'://');
-					let description = json.rss.channel.description;
-						description = description.replace(/<\/?(?:p|br)>/g, ' ');
-						description = description.replace(/\s+/g, ' ');
-					let link = json.rss.channel.link;
-					let output = `<h2>${++count}. ${json.rss.channel.title}</h2>\n`;
-						output += `<p>${description}</p>\n`;
-						if (link) {
-							output += `<p>Website: <a href="${link}" target="_blank">${link}</a>\n`;
-						}
-						output += `<p>Subscribe: <a href="${subscribeURL}" target="_blank">${subscribeURL}</a></p>\n\n`;
-					stream.write(output);
+					podcasts.push({
+						title : json.rss.channel.title,
+						description : json.rss.channel.description,
+						rssURL : rssURL,
+						link : json.rss.channel.link
+					});
+					count++;
 					if (count == end) {
-						stream.end();
+						writePodcastsFile(podcasts);
 					}
 				}
 			} catch (error) {
@@ -69,5 +97,3 @@ fs.readFile(input, function(err, data) {
 		});
 	}
 });
-
-// stream.write('</body></html>');
