@@ -1,3 +1,7 @@
+# goats
+*.opml
+*.html
+
 # filth
 package-lock.json
 
