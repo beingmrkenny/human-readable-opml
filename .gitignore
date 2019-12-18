@@ -1,6 +1,8 @@
 # goats
 *.opml
 *.html
+podcasts.json
+categoires.json
 
 # filth
 package-lock.json

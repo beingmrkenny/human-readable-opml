@@ -23,12 +23,14 @@ button {
     background: transparent;
 }
 thead th {
+    background: orange;
+}
+
+thead th,
+thead td {
     position: sticky;
     top: 0;
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: Gradient 15s ease infinite;
-    color: white;
+    color: #444;
 }
 th, td {
     text-align: left;
@@ -109,6 +111,16 @@ footer {
 
 .from button {
     border-radius: 0 20px 20px 0;
+}
+
+.buttons-cell button {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: Gradient 15s ease infinite;
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 5px 10px;
+    font-weight: bold;
 }
 
 #VoiçoireLeCategoire {

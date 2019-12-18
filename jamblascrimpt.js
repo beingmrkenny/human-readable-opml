@@ -9,6 +9,8 @@ q('#VoiçoireLeCategoire button').addEventListener ('click', function () {
 
     if (tousLesCategoiresBatardes.length) {
 
+        let buttonsCell = q('.buttons-cell')
+
         let tousLesCategoires = {};
         for (let batarde of tousLesCategoiresBatardes) {
             let id = 'categoire_' + batarde.replace(/[^a-z]/ig, '');
@@ -22,7 +24,7 @@ q('#VoiçoireLeCategoire button').addEventListener ('click', function () {
         for (let id in tousLesCategoires) {
             let newTh = th.cloneNode(true);
             newTh.textContent = tousLesCategoires[id];
-            thead.appendChild(newTh);
+            thead.insertBefore(newTh, buttonsCell);
         }
 
         for (let tr of qq('tbody tr')) {
@@ -41,6 +43,15 @@ q('#VoiçoireLeCategoire button').addEventListener ('click', function () {
         laCategoireTabloire.style.display = 'block';
     }
 });
+
+for (let bewton of qq('.buttons-cell button')) {
+    bewton.addEventListener ('click', function () {
+
+        // if (this.textContent == 'JSON') {
+    });
+}
+
+
 
 function qid (id) {
     return document.getElementById(id);
