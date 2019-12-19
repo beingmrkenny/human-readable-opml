@@ -84,15 +84,15 @@ function writeChooseCategoiresHTML(podcasts) {
 	let categoiresStream = fs.createWriteStream(chooseCategoiresHTMLOutput, {flags:'a'});
 	categoiresStream.write(`<!DOCTYPE html>
 	<html><head><meta charset="utf-8">
-		<title>${title} pour la categoire</title>
+		<title>${title}: pour la categoire</title>
 		<style>${style}</style>
 		<link href="stile.css" rel="stylesheet">
 	</head>\n
 	<body class="pour-la-categoire">\n
-	<h1>${title} pour la categoire</h1>
+	<h1>${title} — <i>pour la categoire</i></h1>
 
 	<section id="VoiçoireLeCategoire">
-		<p>Please shovoire le categoire up this textboire (shovoire each categoire up its own line, s’il voire ploire).</p>
+		<p>Please shovoire toutes les categoires up this textboire (shovoire each categoire up its own line, s’il voire ploire).</p>
 		<p class="from">
 			<textarea rows="5" id=""></textarea>
 			<button>➽</button>
