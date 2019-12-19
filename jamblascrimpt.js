@@ -3,9 +3,8 @@ q('#VoiçoireLeCategoire button').addEventListener ('click', function () {
     let laCategoireTabloire = qid('LeCategoireTabloire');
 
     let tousLesCategoiresBatardes = q('textarea', voiçoireLeCategoire).value.trim().split(/[\n\r]+/);
-    tousLesCategoiresBatardes = tousLesCategoiresBatardes.filter( c => {
-        return !/^\s*$/.test(c);
-    });
+    tousLesCategoiresBatardes = tousLesCategoiresBatardes.filter( categoire => !/^\s*$/.test(categoire) );
+    tousLesCategoiresBatardes = tousLesCategoiresBatardes.filter( (value, i, array) => array.indexOf(value) === i );
 
     if (tousLesCategoiresBatardes.length) {
 
@@ -33,22 +32,48 @@ q('#VoiçoireLeCategoire button').addEventListener ('click', function () {
             for (let id in tousLesCategoires) {
                 let newTd = td.cloneNode(true);
                 let label = q('label', newTd);
+                let input = q('input', newTd);
                 label.setAttribute('for', label.getAttribute('for')+`_${id}`);
-                q('input', newTd).id += `_${id}`;
+                input.id += `_${id}`;
+                input.value = tousLesCategoires[id];
                 tr.appendChild(newTd);
             }
         }
 
         voiçoireLeCategoire.style.display = 'none';
         laCategoireTabloire.style.display = 'block';
+
+        for (let bewton of qq('.buttons-cell button')) {
+            bewton.addEventListener ('click', function () {
+                collectPodcastData();
+                // if (this.textContent == 'JSON') {
+            });
+        }
+
     }
+
 });
 
-for (let bewton of qq('.buttons-cell button')) {
-    bewton.addEventListener ('click', function () {
+function collectPodcastData () {
+    var podcasts = [];
+    for (let tr of qq('tbody tr')) {
+        let podcast = {
+            favorite : q('.favorite-input', tr).checked,
+            imageURL : q('img', tr).src,
+            title : q('th', tr).textContent.trim(),
+            categoires : [],
+            rssURL : tr.dataset.rssurl,
+            htmlURL : tr.dataset.htmlurl,
+            description : tr.dataset.description
+        };
 
-        // if (this.textContent == 'JSON') {
-    });
+        for (let checker of qq('.categoire-input', tr)) {
+            checker.checked && podcast.categoires.push(checker.value);
+        }
+
+        console.log(podcast);
+
+    }
 }
 
 

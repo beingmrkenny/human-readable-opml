@@ -80,7 +80,7 @@ function writePodcastsHTML (podcasts) {
 	podcastsStream.end();
 }
 
-function writeCategoiresHTML(podcasts) {
+function writeChooseCategoiresHTML(podcasts) {
 	let categoiresStream = fs.createWriteStream(chooseCategoiresHTMLOutput, {flags:'a'});
 	categoiresStream.write(`<!DOCTYPE html>
 	<html><head><meta charset="utf-8">
@@ -106,6 +106,10 @@ function writeCategoiresHTML(podcasts) {
 					<th>Favourite?</th>
 					<th colspan="2">Podcast</th>
 					<th class="checkbox-cell categoire-cell"></th>
+					<td class="buttons-cell">
+						<button>JSON</button>
+						<button>HTML</button>
+					</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -120,10 +124,16 @@ function writeCategoiresHTML(podcasts) {
 				<tr data-rssURL="${escapeAttribute(podcast.rssURL)}"
 					data-htmlURL="${escapeAttribute(podcast.htmlURL || '')}"
 					data-description="${escapeAttribute(podcast.description)}">
-					<td class="checkbox-cell"><input type="checkbox" id="favorite-${podcast.id}"><label for="favorite-${podcast.id}"></label></td>
+					<td class="checkbox-cell">
+						<input type="checkbox" id="favorite-${podcast.id}" class="favorite-input">
+						<label for="favorite-${podcast.id}"></label>
+					</td>
 					<td><img src="${podcast.image}" alt=""></td>
 					<th>${podcast.title}</th>
-					<td class="checkbox-cell categoire-cell"><input type="checkbox" id="categoire-${podcast.id}"><label for="categoire-${podcast.id}"></label></td>
+					<td class="checkbox-cell categoire-cell">
+						<input type="checkbox" id="categoire-${podcast.id}" class="categoire-input">
+						<label for="categoire-${podcast.id}" value=""></label>
+					</td>
 				</tr>
 		`);
 	}
@@ -213,7 +223,7 @@ fs.readFile(input, function(err, data) {
 						}
 						writePodcastsJSON(podcasts);
 						writePodcastsHTML(podcasts);
-						writeCategoiresHTML(podcasts);
+						writeChooseCategoiresHTML(podcasts);
 					}
 
 				}
