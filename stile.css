@@ -82,7 +82,21 @@ img {
     margin: 0 10px 10px 0;
     border-radius: 3px;
 }
-
+th textarea {
+    border-radius: 10px;
+    border: 1px solid gray;
+    resize: none;
+    width: calc( 100% - 23px );
+}
+th div {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+th p {
+    margin: 0;
+}
 td img {
     margin: 0;
 }

@@ -72,43 +72,32 @@ function writePodcastsHTML(podcasts) {
 
 	for (let podcast of podcasts) {
 		let favoriteClass = (podcast.favorite) ? 'favorite' : '';
-		rows += `<tr data-rssURL="${escapeAttribute(podcast.rssURL)}"
-			data-htmlURL="${escapeAttribute(podcast.htmlURL || '')}"
-			data-description="${escapeAttribute(podcast.description)}">
-			<td><img src="${podcast.image}" alt=""></td>
-			<th>${podcast.title}</th>
-			<td class="checkbox-cell categoire-cell">
-				<input type="checkbox" id="categoire-${podcast.id}" class="categoire-input">
-				<label for="categoire-${podcast.id}" value=""></label>
-			</td>
-		</tr>`;
 		rows += `<tr>
 			<td><input type="checkbox"></td>
-			<td><img src="${podcast.image}" alt=""></td>
+			<td><img src="${escapeHTML(podcast.imageURL)}" alt=""></td>
 			<td>
-				<h2>${escapeAttribute(podcast.title)}</h2>
-				<p>${escapeAttribute(podcast.description)}</p>
-				<p>${escapeAttribute(podcast.comment)}</p>
+				<h2>${escapeHTML(podcast.title)}</h2>
+				<p>${escapeHTML(podcast.description)}</p>
+				<p>${escapeHTML(podcast.comment)}</p>
 			</td>
 			<td>
-				<a href="${escapeAttribute(podcast.htmlURL)}">Visit website</a>
-				<a href="${escapeAttribute(podcast.rssURL)}">Subscribe on Apple Podcasts</p>
+				<a href="${escapeHTML(podcast.htmlURL)}">Visit website</a>
+				<a href="${escapeHTML(podcast.rssURL)}">Subscribe on Apple Podcasts</p>
 			</td>
 		</tr>`;
 	}
 
+	let style = q('style', document.head).textContent;
 
-
-	var podcastHTML = `<!DOCTYPE html>
+	return `<!DOCTYPE html>
 	<html><head><meta charset="utf-8">
-		<title>${title}: pour la categoire</title>
+		<title>Podcasts pour la categoire</title>
 		<style>${style}</style>
-		<link href="stile.css" rel="stylesheet">
 	</head>
 
 	<body class="pour-la-categoire">
 
-	<h1>${title} — <i>pour la categoire</i></h1>
+	<h1>Podcasts — <i>pour la categoire</i></h1>
 
 	<section id="LeCategoireTabloire">
 		<table>
@@ -139,7 +128,7 @@ function collectPodcastData () {
 			rssURL : tr.dataset.rssurl,
 			htmlURL : tr.dataset.htmlurl,
 			description : tr.dataset.description,
-			// comment : q('textarea', tr).value
+			comment : q('textarea', tr).value
 		};
 		for (let checker of qq('.categoire-input', tr)) {
 			checker.checked && podcast.categoires.push(checker.value);

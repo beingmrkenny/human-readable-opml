@@ -11,6 +11,8 @@ const style = ``;
  *                                         ye blessed munter        *        *              *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *     *        *       */
 
+const common = require('./common.js');
+
 const fs = require('fs');
 const xml2json = require('xml2json');
 const request = require('request');
@@ -49,7 +51,7 @@ function writePodcastsJSON (podcast) {
 	);
 }
 
-function writePodcastsHTML (podcasts) {
+function writePodcastsHTML (podcasts, style) {
 	let podcastsStream = fs.createWriteStream(podcastsHTMLOutput, {flags:'a'});
 	podcastsStream.write(`<!DOCTYPE html>
 	<html>
@@ -80,13 +82,12 @@ function writePodcastsHTML (podcasts) {
 	podcastsStream.end();
 }
 
-function writeChooseCategoiresHTML(podcasts) {
+function writeChooseCategoiresHTML(podcasts, style) {
 	let categoiresStream = fs.createWriteStream(chooseCategoiresHTMLOutput, {flags:'a'});
 	categoiresStream.write(`<!DOCTYPE html>
 	<html><head><meta charset="utf-8">
 		<title>${title}: pour la categoire</title>
 		<style>${style}</style>
-		<link href="stile.css" rel="stylesheet">
 	</head>\n
 	<body class="pour-la-categoire">\n
 	<h1>${title} — <i>pour la categoire</i></h1>
@@ -115,21 +116,26 @@ function writeChooseCategoiresHTML(podcasts) {
 			<tbody>
 		`);
 	categoiresStream.on('finish', function () {
-		let script = '<script src="jamblascrimpt.js"></script>'
+		let script = '<script src="FileSaver.js"></script><script src="common.js"></script><script src="jamblascrimpt.js"></script>'
 		fs.appendFileSync(chooseCategoiresHTMLOutput, `\n\t\t\t</tbody>\n\t\t</table>\n\t</section>\n\n\t${script}\n\n\t</body>\n</html>`);
 	});
 	for (let podcast of podcasts) {
 		podcast = prepPodcastForHTML(podcast);
 		categoiresStream.write(`
-				<tr data-rssURL="${escapeAttribute(podcast.rssURL)}"
-					data-htmlURL="${escapeAttribute(podcast.htmlURL || '')}"
-					data-description="${escapeAttribute(podcast.description)}">
+				<tr data-rssURL="${common.escapeHTML(podcast.rssURL)}"
+					data-htmlURL="${common.escapeHTML(podcast.htmlURL || '')}"
+					data-description="${common.escapeHTML(podcast.description)}">
 					<td class="checkbox-cell">
 						<input type="checkbox" id="favorite-${podcast.id}" class="favorite-input">
 						<label for="favorite-${podcast.id}"></label>
 					</td>
 					<td><img src="${podcast.image}" alt=""></td>
-					<th>${podcast.title}</th>
+					<th>
+						<div>
+							<p>${podcast.title}</p>
+							<p><textarea></textarea></p>
+						</div>
+					</th>
 					<td class="checkbox-cell categoire-cell">
 						<input type="checkbox" id="categoire-${podcast.id}" class="categoire-input">
 						<label for="categoire-${podcast.id}" value=""></label>
@@ -140,99 +146,67 @@ function writeChooseCategoiresHTML(podcasts) {
 	categoiresStream.end();
 }
 
-function escapeAttribute (string) {
-	const entityMap = {
-		'&' : '&amp;',
-		'<' : '&lt;',
-		'>' : '&gt;',
-		' ' : '&#32;',
-		'!' : '&#33;',
-		'"' : '&#34;',
-		'$' : '&#36;',
-		'%' : '&#37;',
-		"'" : '&#39;',
-		'(' : '&#40;',
-		')' : '&#41;',
-		'+' : '&#43;',
-		'/' : '&#47;',
-		'=' : '&#61;',
-		'@' : '&#64;',
-		'[' : '&#91;',
-		']' : '&#93;',
-		'`' : '&#96;',
-		'{' : '&#123;',
-		'}' : '&#125;',
-	};
-	return String(string).replace(/[[&<> !"$%'()+/=@`{}]|]/g, s => entityMap[s] );
-}
+fs.readFile('stile.css', 'utf8', (err, style) => {
 
-function ovalue (obj) {
-	var base = obj;
-	if (typeof base == 'object' && base !== null) {
-		for (var i=1, x=arguments.length; i<x; i++) {
-			if (typeof base[arguments[i]] == 'object' && base[arguments[i]] !== null) {
-				base = base[arguments[i]];
-			} else {
-				base = base[arguments[i--]];
-				break;
-			}
+	fs.readFile(input, (err, data) => {
+
+		if (err) {
+			console.log(err);
+			return;
 		}
-	}
-	return base;
-}
 
-fs.readFile(input, function(err, data) {
+		let json = xml2json.toJson(data, { object: true });
+		let count = 0;
+		totalPodcasts = json.opml.body.outline.length;
 
-	let json = xml2json.toJson(data, { object: true });
-	let count = 0;
-	totalPodcasts = json.opml.body.outline.length;
+		for (outline of json.opml.body.outline) {
+			let rssURL = outline.xmlUrl;
+			request(rssURL, function(err, res, data) {
+				try {
 
-	for (outline of json.opml.body.outline) {
-		let rssURL = outline.xmlUrl;
-		request(rssURL, function(err, res, data) {
-			try {
+					let json = xml2json.toJson(data, { object: true });
+					if (json.rss) {
 
-				let json = xml2json.toJson(data, { object: true });
-				if (json.rss) {
+						delete json.rss.channel.item;
+						let title = json.rss.channel.title;
 
-					delete json.rss.channel.item;
-					let title = json.rss.channel.title;
-
-					let imageURL = ovalue(json, 'rss', 'channel', 'itunes:image', 'href');
-					if (!imageURL || title.includes('Pep Talks')) {
-						imageURL = ovalue(json, 'rss', 'channel', 'image', 'url');
-					}
-
-					podcasts.push({
-						title : title,
-						description : json.rss.channel.description,
-						image: imageURL,
-						rssURL : rssURL,
-						htmlURL : json.rss.channel.link
-					});
-
-					if (++count == totalPodcasts) {
-						for (let podcast of podcasts) {
-							podcasts.sort(function(pa, pb) {
-								let a = pa.title.toLowerCase();
-								let b = pb.title.toLowerCase();
-								if (a < b) { return -1; }
-								if (a > b) { return 1; }
-								return 0;
-							});
+						let imageURL = common.ovalue(json, 'rss', 'channel', 'itunes:image', 'href');
+						if (!imageURL || title.includes('Pep Talks')) {
+							imageURL = common.ovalue(json, 'rss', 'channel', 'image', 'url');
 						}
-						writePodcastsJSON(podcasts);
-						writePodcastsHTML(podcasts);
-						writeChooseCategoiresHTML(podcasts);
-					}
 
+						podcasts.push({
+							title : title,
+							description : json.rss.channel.description,
+							image: imageURL,
+							rssURL : rssURL,
+							htmlURL : json.rss.channel.link
+						});
+
+						if (++count == totalPodcasts) {
+							for (let podcast of podcasts) {
+								podcasts.sort(function(pa, pb) {
+									let a = pa.title.toLowerCase();
+									let b = pb.title.toLowerCase();
+									if (a < b) { return -1; }
+									if (a > b) { return 1; }
+									return 0;
+								});
+							}
+							writePodcastsJSON(podcasts);
+							writePodcastsHTML(podcasts, style);
+							writeChooseCategoiresHTML(podcasts, style);
+						}
+
+					}
+				} catch (error) {
+					console.log('fucked up: ' + rssURL);
+					console.log(error);
 				}
-			} catch (error) {
-				console.log('fucked up: ' + rssURL);
-				console.log(error);
-			}
-		});
-	}
+			});
+		}
+
+	});
 
 });
 
